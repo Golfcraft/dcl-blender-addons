@@ -1,6 +1,6 @@
 import bpy
 
-class OT_WeightsSymmetrizer(bpy.types.Operator):
+class OMV_OT_WeightsSymmetrizer(bpy.types.Operator):
     """Symmetrize vertex groups weights"""
     bl_idname = "dcl.weights_symmetrizer"
     bl_label = "VertexGroups / PoseBones"
@@ -9,7 +9,8 @@ class OT_WeightsSymmetrizer(bpy.types.Operator):
     @classmethod
     def poll(cls, context):
         active = bpy.context.active_object
-        if context.area.ui_type == 'VIEW_3D' and active.type == 'MESH' and active.mode == 'WEIGHT_PAINT':
+        if context.area.ui_type == 'VIEW_3D' and active.type == 'MESH':
+        # if context.area.ui_type == 'VIEW_3D' and active.type == 'MESH' and active.mode == 'WEIGHT_PAINT':
             return True
 
     def execute(self, context):
@@ -19,6 +20,11 @@ class OT_WeightsSymmetrizer(bpy.types.Operator):
         active_vg = vgroups.active.name
         pbones = C.selected_pose_bones
 
+        # Clean old _copy vertex groups
+        for vg in vgroups:
+            if "_copy" in vg.name:
+                vgroups.remove(vg)
+
         # Operator only works with symmetrized armatures
         for mod in active.modifiers:
             if mod.type == 'ARMATURE' and mod.object is not None:
@@ -27,23 +33,33 @@ class OT_WeightsSymmetrizer(bpy.types.Operator):
             self.report({'ERROR'}, "Aborted: Only works with symmetrized armatures")
             return {'CANCELLED'}
 
-        # Multi
+        # Multibones
         if pbones:
-            for bone in pbones:
-                pbone = bone.name
-                print("pbone", pbone)
+            for bone in context.selected_pose_bones:
                 for vg in vgroups:
-                    if vg.name == pbone:
+                    if vg.name == bone.name:
                         bpy.ops.object.vertex_group_set_active(group=vg.name)
                         active_vg = vg.name
-                        print("active_vg", active_vg)
-                        symmetrize_weights(active_vg, vgroups)
+                        if ".L" in active_vg or ".R" in active_vg:
+                            symmetrize_weights(active_vg, vgroups)
+                        else:
+                            pass
+        # Vertex group selection
         else:
-            symmetrize_weights(active_vg, vgroups)
+            if ".L" in active_vg or ".R" in active_vg:
+                symmetrize_weights(active_vg, vgroups)
+            else:
+                self.report({'WARNING'}, "Only works with .L or .R vertex groups")
+                return {'CANCELLED'}
+
+        self.report({'INFO'}, "Successful weights symmetrization")
 
         return{'FINISHED'}
 
 def symmetrize_weights(active_vg, vgroups):
+    # Save active VG
+    current_vg = bpy.context.active_object.vertex_groups.active
+    
     # Duplicate active vertex group
     bpy.ops.object.vertex_group_copy()
     # Delete current mirrored
@@ -57,7 +73,7 @@ def symmetrize_weights(active_vg, vgroups):
             vgroups.remove(vg)
 
     # Mirror weights
-    bpy.ops.object.vertex_group_mirror(use_topology=False)
+    bpy.ops.object.vertex_group_mirror(use_topology=True)
     # Rename mirrored vgroup
     for vg in vgroups:
         if vg.name == active_vg + "_copy":
@@ -65,13 +81,16 @@ def symmetrize_weights(active_vg, vgroups):
                 vg.name = active_vg.replace(".L", ".R").replace("_copy", "")
             elif ".R" in active_vg:
                 vg.name = active_vg.replace(".R", ".L").replace("_copy", "")
+    
+
+    bpy.context.active_object.vertex_groups.active = current_vg
 
 
 ####################################
 # REGISTER/UNREGISTER
 ####################################
 def register():
-    bpy.utils.register_class(OT_WeightsSymmetrizer) 
+    bpy.utils.register_class(OMV_OT_WeightsSymmetrizer)
         
 def unregister():
-    bpy.utils.unregister_class(OT_WeightsSymmetrizer)
+    bpy.utils.unregister_class(OMV_OT_WeightsSymmetrizer)
