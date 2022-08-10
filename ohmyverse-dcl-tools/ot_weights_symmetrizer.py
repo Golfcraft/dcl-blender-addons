@@ -73,7 +73,7 @@ def symmetrize_weights(active_vg, vgroups):
             vgroups.remove(vg)
 
     # Mirror weights
-    bpy.ops.object.vertex_group_mirror(use_topology=True)
+    bpy.ops.object.vertex_group_mirror(use_topology=False)
     # Rename mirrored vgroup
     for vg in vgroups:
         if vg.name == active_vg + "_copy":
