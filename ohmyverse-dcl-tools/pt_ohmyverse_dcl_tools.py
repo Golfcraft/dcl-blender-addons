@@ -78,7 +78,9 @@ class OMV_PT_MeshCleanup(bpy.types.Panel):
         layout = self.layout
         col = layout.column()
         active = context.active_object
-        if active.data.has_custom_normals:
+        if active is not None \
+            and active.type == 'MESH' \
+            and active.data.has_custom_normals:
             col.operator("mesh.customdata_custom_splitnormals_clear", text="Clear custom split normals", icon="CANCEL")
         else:
             col.enabled = False
