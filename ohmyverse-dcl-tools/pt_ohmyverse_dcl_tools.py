@@ -51,13 +51,39 @@ class OMV_PT_VertexWeights(bpy.types.Panel):
  
     def draw(self,context):
         layout = self.layout
+        objects = context.selected_objects
+        pose_bones = context.selected_pose_bones
+        active = context.active_object
+
         col = layout.column(align=True)
         col.label(text="Symmetrize Weights of:", icon='MOD_VERTEX_WEIGHT')
-        objects = bpy.context.selected_objects
-        if len(objects) == 1:
+
+        if (len(objects) == 1) and (active.type == 'MESH'):
             col.operator("dcl.weights_symmetrizer", text="Selected vertex group")
-        else:   
+        elif (pose_bones is not None) and (len(pose_bones) >= 1):
             col.operator("dcl.weights_symmetrizer", text="Selected pose bones")
+        else:
+            col.enabled = False
+            col.operator("dcl.weights_symmetrizer", text="Selection is not valid")
+        
+class OMV_PT_MeshCleanup(bpy.types.Panel):
+    bl_label = "Mesh Cleanup"
+    bl_idname = "OMV_PT_mesh_cleanup_panel"
+    bl_space_type = 'VIEW_3D'
+    bl_region_type = 'UI'
+    bl_category = 'DCL'
+    bl_parent_id = "OMV_PT_ohmyverse_dcl_tools"
+
+    def draw(self,context):
+        layout = self.layout
+        col = layout.column()
+        active = context.active_object
+        if active.data.has_custom_normals:
+            col.operator("mesh.customdata_custom_splitnormals_clear", text="Clear custom split normals", icon="CANCEL")
+        else:
+            col.enabled = False
+            col.operator("mesh.customdata_custom_splitnormals_clear", text="Clear custom split normals", icon="CANCEL")
+        
 
 def type_object_poll(self, object):
     return object.type == 'ARMATURE'
@@ -70,6 +96,7 @@ def register():
     bpy.utils.register_class(OMV_PT_OhmyverseDclTools) 
     bpy.utils.register_class(OMV_PT_Armatures) 
     bpy.utils.register_class(OMV_PT_VertexWeights) 
+    bpy.utils.register_class(OMV_PT_MeshCleanup) 
 
     bpy.types.Scene.Armature = bpy.props.PointerProperty(
         type=bpy.types.Object,
@@ -80,5 +107,6 @@ def unregister():
     bpy.utils.unregister_class(OMV_PT_OhmyverseDclTools)
     bpy.utils.unregister_class(OMV_PT_Armatures)
     bpy.utils.unregister_class(OMV_PT_VertexWeights)
+    bpy.utils.unregister_class(OMV_PT_MeshCleanup)
 
     del bpy.types.Scene.Armature
