@@ -8,7 +8,7 @@ For this reason we make an operator for symmetrize the Decentraland armatures.
 
 Disclaimer: Before exporting make sure to restore the original structure with the second option. If you don't, Decentraland animations won't work.
 
-<img src="demo/omv_dcl_tools_symmetrize_armature.mp4" width="720">
+https://user-images.githubusercontent.com/21176686/184261103-db268c7e-961b-4a3f-813b-60ead0a49a8c.mp4
 
 ## Symmetrize Weights
 In some cases for any reason you may need to mirror the weights you have painted. This operator can be used with the active vertex-group of the selected object, or also with the set of selected pose-bones.
@@ -23,3 +23,6 @@ In many cases you will notice that the normals of your mesh don't look as you wo
 2. In Blender go to Edit->Preferences->Addons->Install
 3. Choose the downloaded zip file and install
 4. You can find the panel in 3d-View Sidebar. Enjoy!
+
+https://user-images.githubusercontent.com/21176686/184261098-cac68d7d-04ac-450c-bee5-fe38d1d1678f.mp4
+
