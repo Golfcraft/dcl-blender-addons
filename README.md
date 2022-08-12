@@ -50,7 +50,7 @@ https://user-images.githubusercontent.com/21176686/184262773-9d8b90e3-721c-4839-
 
 ---
 # Instalation
-1. Download last release here
+1. Download last release [here](https://github.com/Golfcraft/dcl-blender-addons/tree/main/releases)
 2. In Blender go to Edit->Preferences->Addons->Install
 3. Choose the downloaded zip file and install
 4. You can find the panel in 3d-View Sidebar. Enjoy!
