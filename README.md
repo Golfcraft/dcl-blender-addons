@@ -8,14 +8,40 @@ For this reason we make an operator for symmetrize the Decentraland armatures.
 
 Disclaimer: Before exporting make sure to restore the original structure with the second option. If you don't, Decentraland animations won't work.
 
-https://user-images.githubusercontent.com/21176686/184261103-db268c7e-961b-4a3f-813b-60ead0a49a8c.mp4
+### Painting weights without symmetry
+
+https://user-images.githubusercontent.com/21176686/184262838-13a36a04-7575-4734-94ae-b3208f4fb881.mp4
+
+### Painting with our symmetry solution
+
+https://user-images.githubusercontent.com/21176686/184262854-c571d246-9ac2-4c4e-bcd2-6ba85b8638d0.mp4
+
+### Restore DCL armature to original structure
+
+https://user-images.githubusercontent.com/21176686/184262829-e1b5a0dc-d132-41a9-b7eb-27fe6325305f.mp4
+
+
 
 ## Symmetrize Weights
 In some cases for any reason you may need to mirror the weights you have painted. This operator can be used with the active vertex-group of the selected object, or also with the set of selected pose-bones.
 
+### Symmetrize weights based on pose bone selection
+
+https://user-images.githubusercontent.com/21176686/184262797-d0db0513-52c5-4a34-838e-eaa3986e6fb9.mp4
+
+### Symmetrize weights based on active vertex group selection
+
+https://user-images.githubusercontent.com/21176686/184262811-908a1fee-dc0a-4b20-b715-40617373f646.mp4
+
+
 ## Mesh Cleanup
 ### Clear custom split normals
 In many cases you will notice that the normals of your mesh don't look as you would like, especially when you have imported the decentraland reference models from a FBX file. It is a common problem, but the solution is a bit hidden. We have added a button to have this function closer.
+
+### Clear custom split normals data
+
+https://user-images.githubusercontent.com/21176686/184262773-9d8b90e3-721c-4839-9460-a7f239fe9233.mp4
+
 
 ---
 # Instalation
@@ -23,6 +49,3 @@ In many cases you will notice that the normals of your mesh don't look as you wo
 2. In Blender go to Edit->Preferences->Addons->Install
 3. Choose the downloaded zip file and install
 4. You can find the panel in 3d-View Sidebar. Enjoy!
-
-https://user-images.githubusercontent.com/21176686/184261098-cac68d7d-04ac-450c-bee5-fe38d1d1678f.mp4
-
