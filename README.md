@@ -3,23 +3,25 @@
 This addon provide some tools for improve the asset creation for Decentraland, specially regarding wearables.
 
 ## Symmetrize Armature 
-One of the main issues we find when linking a wearable to the decentraland skeleton is that it is not symmetrical. Blender comes with some useful features, like painting weights in x-axis symmetry. But we cannot take advantage of this feature. This happens because decentraland's skeleton structure doesn't end with ".L" and ".R" suffixes, which is what blender needs to work in symmetry.
+One of the main issues we find when linking a wearable to the decentraland skeleton is that it is not symmetrical. Blender comes with some useful features, like painting weights in x-axis symmetry. But we cannot take advantage of this feature. This happens because decentraland's skeleton structure doesn't have ".L" and ".R" suffixes, which is what blender needs to work in symmetry.
 
 For this reason we make an operator for symmetrize the Decentraland armatures.
 
 Disclaimer: Before exporting make sure to restore the original structure with the second option. If you don't, Decentraland animations won't work.
 
-### Painting weights without symmetry (the painful way)
+### Painting weights without symmetry (the painful way, because is broken)
 
 https://user-images.githubusercontent.com/21176686/184263925-5c49fd4a-ef09-4bef-9e78-b43f9a64d4e7.mp4
 
 
 ### Painting with our symmetry solution
+The addon rename the bones and fix bone-rolls to fix the issue
 
 https://user-images.githubusercontent.com/21176686/184262854-c571d246-9ac2-4c4e-bcd2-6ba85b8638d0.mp4
 
 
 ### Restore DCL armature to original structure
+You must restore the original DCL armature before exporting your wearables, because the animations are made for this specific structure.
 
 https://user-images.githubusercontent.com/21176686/184262829-e1b5a0dc-d132-41a9-b7eb-27fe6325305f.mp4
 
