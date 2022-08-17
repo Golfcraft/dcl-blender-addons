@@ -56,12 +56,12 @@ class OMV_PT_VertexWeights(bpy.types.Panel):
         active = context.active_object
 
         col = layout.column(align=True)
-        col.label(text="Symmetrize Weights of:", icon='MOD_VERTEX_WEIGHT')
+        col.label(text="Symmetrize Weights of:")
 
         if (len(objects) == 1) and (active.type == 'MESH'):
-            col.operator("dcl.weights_symmetrizer", text="Selected vertex group")
+            col.operator("dcl.weights_symmetrizer", text="Selected vertex group", icon='GROUP_VERTEX')
         elif (pose_bones is not None) and (len(pose_bones) >= 1):
-            col.operator("dcl.weights_symmetrizer", text="Selected pose bones")
+            col.operator("dcl.weights_symmetrizer", text="Selected pose bones", icon='BONE_DATA')
         else:
             col.enabled = False
             col.operator("dcl.weights_symmetrizer", text="Selection is not valid")
