@@ -85,7 +85,24 @@ class OMV_PT_MeshCleanup(bpy.types.Panel):
         else:
             col.enabled = False
             col.operator("mesh.customdata_custom_splitnormals_clear", text="Clear custom split normals", icon="CANCEL")
-        
+
+class OMV_PT_ExportGltfs(bpy.types.Panel):
+    bl_label = "Export glTFs"
+    bl_idname = "OMV_PT_export_gltfs_panel"
+    bl_space_type = 'VIEW_3D'
+    bl_region_type = 'UI'
+    bl_category = 'DCL'
+    bl_parent_id = "OMV_PT_ohmyverse_dcl_tools"
+
+    def draw(self,context):
+        gltfs_export_setup = context.scene.omv_gltfsexportsetup
+        layout = self.layout
+        col = layout.column()
+        col.prop(gltfs_export_setup, "export_path_3dmodels")
+        col.prop(gltfs_export_setup, "export_path_metadata")
+        col.prop(gltfs_export_setup, "collection_name_main")
+        col.prop(gltfs_export_setup, "collection_name_empties")
+        col.operator("dcl.export_gltfs", text="Export to DCL", icon="EXPORT")
 
 def type_object_poll(self, object):
     return object.type == 'ARMATURE'
@@ -95,20 +112,22 @@ def type_object_poll(self, object):
 # REGISTER/UNREGISTER
 ####################################
 def register():
-    bpy.utils.register_class(OMV_PT_OhmyverseDclTools) 
-    bpy.utils.register_class(OMV_PT_Armatures) 
-    bpy.utils.register_class(OMV_PT_VertexWeights) 
-    bpy.utils.register_class(OMV_PT_MeshCleanup) 
+    bpy.utils.register_class(OMV_PT_OhmyverseDclTools)
+    bpy.utils.register_class(OMV_PT_Armatures)
+    bpy.utils.register_class(OMV_PT_VertexWeights)
+    bpy.utils.register_class(OMV_PT_MeshCleanup)
+    bpy.utils.register_class(OMV_PT_ExportGltfs)
 
     bpy.types.Scene.Armature = bpy.props.PointerProperty(
         type=bpy.types.Object,
         poll=type_object_poll
     )
-        
+
 def unregister():
     bpy.utils.unregister_class(OMV_PT_OhmyverseDclTools)
     bpy.utils.unregister_class(OMV_PT_Armatures)
     bpy.utils.unregister_class(OMV_PT_VertexWeights)
     bpy.utils.unregister_class(OMV_PT_MeshCleanup)
+    bpy.utils.unregister_class(OMV_PT_ExportGltfs)
 
     del bpy.types.Scene.Armature

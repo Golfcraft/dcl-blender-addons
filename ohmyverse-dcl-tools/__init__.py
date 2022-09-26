@@ -36,12 +36,12 @@ bl_info = {
 def register():
     ot_armature_symmetrizer.register()
     ot_weights_symmetrizer.register()
-    # ot_export.register()
+    ot_export.register()
     pt_ohmyverse_dcl_tools.register()
 
 
 def unregister():
     ot_armature_symmetrizer.unregister()
     ot_weights_symmetrizer.unregister()
-    # ot_export.unregister()
+    ot_export.unregister()
     pt_ohmyverse_dcl_tools.unregister()
