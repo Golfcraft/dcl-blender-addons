@@ -5,6 +5,7 @@ import json
 from bpy.props import (
     StringProperty,
     PointerProperty,
+    BoolProperty,
 )
 
 
@@ -141,7 +142,7 @@ class OMV_OT_ExportGltfs(bpy.types.Operator):
         self.select_all_collection(collection)
         gltf_name = "{}.glb".format(collection.name)
         save_path = bpy.path.abspath(os.path.join(bpy.path.native_pathsep(gltf_path), gltf_name))
-        if True:
+        if C.scene.omv_gltfsexportsetup.export_gltfs:
             bpy.ops.export_scene.gltf(
                 filepath=save_path,
                 export_format="GLB",
@@ -170,6 +171,8 @@ class OMV_PG_GltfsExportSetup(bpy.types.PropertyGroup):
     collection_name_empties: StringProperty(
         name="Empties collection name"
     )
+
+    export_gltfs: BoolProperty()
 
 
 ####################################

@@ -87,7 +87,7 @@ class OMV_PT_MeshCleanup(bpy.types.Panel):
             col.operator("mesh.customdata_custom_splitnormals_clear", text="Clear custom split normals", icon="CANCEL")
 
 class OMV_PT_ExportGltfs(bpy.types.Panel):
-    bl_label = "Export glTFs"
+    bl_label = "Export scene"
     bl_idname = "OMV_PT_export_gltfs_panel"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
@@ -97,11 +97,14 @@ class OMV_PT_ExportGltfs(bpy.types.Panel):
     def draw(self,context):
         gltfs_export_setup = context.scene.omv_gltfsexportsetup
         layout = self.layout
+        layout.use_property_split = True
+        layout.use_property_decorate = False
         col = layout.column()
         col.prop(gltfs_export_setup, "export_path_3dmodels")
         col.prop(gltfs_export_setup, "export_path_metadata")
         col.prop(gltfs_export_setup, "collection_name_main")
         col.prop(gltfs_export_setup, "collection_name_empties")
+        col.prop(gltfs_export_setup, "export_gltfs")
         col.operator("dcl.export_gltfs", text="Export to DCL", icon="EXPORT")
 
 def type_object_poll(self, object):
