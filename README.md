@@ -50,6 +50,44 @@ In many cases you will notice that the normals of your mesh don't look as you wo
 https://user-images.githubusercontent.com/21176686/184262773-9d8b90e3-721c-4839-9460-a7f239fe9233.mp4
 
 
+## Scene Export
+A Decentraland scene is a combination of multiple 3D models, until now the artist only where able to work on one 3D model at the time, exporting it and positioning it by trial and error of the position and rotation Transformation on code.
+
+Our Blender addon allows the export of multiple glTF files (including animation) and its transformation in just one click. It also allows to export additional transformations for positioning objects on code.
+
+![](/demo/export_scene_01.png)
+
+### Create collections
+Under de main Scene Collection create 3 collections:
+- Main (Here we will store the instances)
+- Empties (Here we will add empties to export additional transformations)
+- Others (Here we will add collections to be instanced on Main)
+
+![](/demo/export_scene_02.png)
+
+### Create elements
+Lets create an example scene to export:
+1. Under the Others collection create a new collection labeled Sphere
+1. Create a sphere in the Sphere collection with position 0,0,0
+1. Drag and drop the Sphere collection into the 3D View to create a new instance
+1. Press M and select the Main collection, to move the new instance there
+1. Under the Empties collection create some additional Empties
+
+### Addon setup
+Save the Blender project, and on the Export scene section:
+1. On glTFs path enter a path to a folder where the 3D models should be saved
+1. On glTFs metadata path enter the path to a .ts file where the position, rotation and scale of the instances will be saved
+1. On Main collection name enter the name of the collection storing instances (in our example Main)
+1. On Empties collection name enter the name if the collection storing additional empties to export positions (in our example Empties)
+1. Check the export glTFs option
+
+### Exporting
+Now you can click on Export to DCL , that will result on:
+1. A .glb file stored on the glTFs path, will be named as the collection instansed
+1. A .ts file stored on the glTFs metadata path, you can later import that file into your scene code
+
+![](/demo/export_scene_03.png)
+
 ---
 # Instalation
 1. Download last release [here](https://github.com/Golfcraft/dcl-blender-addons/tree/main/releases)
