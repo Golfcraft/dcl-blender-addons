@@ -17,13 +17,13 @@ from . import ot_export
 from . import pt_ohmyverse_dcl_tools
 
 bl_info = {
-    "name": "Ohmyverse DCL Tools",
-    "author": "Ohmyverse Team, carlosmu <carlos.damian.munoz@gmail.com>",
+    "name": "OhMyVerse DCL Tools",
+    "author": "OhMyVerse Team, carlosmu <carlos.damian.munoz@gmail.com>, eibriel <eibriel@eibriel.com>",
     "blender": (2, 93, 0),
     "version": (0, 1, 0),
     "category": "DCL",
     "location": "3D View -> Sidebar",
-    "description": "Ohmyverse tools for improve Decentraland assets creation workflow",
+    "description": "OhMyVerse tools for improve Decentraland assets creation workflow",
     "warning": "",
     "doc_url": "https://github.com/Golfcraft/dcl-blender-addons",
     "tracker_url": "https://github.com/Golfcraft/dcl-blender-addons",

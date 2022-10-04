@@ -172,7 +172,10 @@ class OMV_PG_GltfsExportSetup(bpy.types.PropertyGroup):
         name="Empties collection name"
     )
 
-    export_gltfs: BoolProperty()
+    export_gltfs: BoolProperty(
+        name="Export glTFs",
+        default=True
+    )
 
 
 ####################################
