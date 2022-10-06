@@ -20,7 +20,7 @@ bl_info = {
     "name": "OhMyVerse DCL Tools",
     "author": "OhMyVerse Team, carlosmu <carlos.damian.munoz@gmail.com>, eibriel <eibriel@eibriel.com>",
     "blender": (2, 93, 0),
-    "version": (0, 1, 0),
+    "version": (0, 2, 0),
     "category": "DCL",
     "location": "3D View -> Sidebar",
     "description": "OhMyVerse tools for improve Decentraland assets creation workflow",
