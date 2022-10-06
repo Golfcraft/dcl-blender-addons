@@ -131,7 +131,7 @@ class OMV_OT_ExportGltfs(bpy.types.Operator):
             obj.hide_set(False)
             obj.select_set(True)
         for c in collection.children:
-            select_all_collection(c)
+            self.select_all_collection(c)
 
     def export_gltf(self, collection):
         C = bpy.context
