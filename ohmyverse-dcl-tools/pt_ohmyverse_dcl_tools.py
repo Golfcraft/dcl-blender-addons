@@ -34,12 +34,17 @@ class OMV_PT_Armatures(bpy.types.Panel):
  
     def draw(self,context):
         layout = self.layout
-        col = layout.column()
+        col = layout.column(align=True)
         col.label(text="Select Armature:")
         col.prop(context.scene, "Armature", text="")
 
         col = layout.column(align=True)
+        col.label(text="Symmetrize DCL armatures for skinning")
         col.operator_enum("dcl.armature_symmetrizer",  "action")
+
+        col = layout.column(align=True)
+        col.label(text="Unlock deform-bones for skinning poses")
+        col.operator_enum("dcl.unlock_deform_bones",  "operation")
 
 class OMV_PT_VertexWeights(bpy.types.Panel):
     bl_label = "Vertex Weights"

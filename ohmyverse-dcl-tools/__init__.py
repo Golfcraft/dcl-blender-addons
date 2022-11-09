@@ -12,6 +12,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from . import ot_armature_symmetrizer
+from . import ot_unlock_deform_bones
 from . import ot_weights_symmetrizer
 from . import ot_export
 from . import pt_ohmyverse_dcl_tools
@@ -20,7 +21,7 @@ bl_info = {
     "name": "OhMyVerse DCL Tools",
     "author": "OhMyVerse Team, carlosmu <carlos.damian.munoz@gmail.com>, eibriel <eibriel@eibriel.com>",
     "blender": (2, 93, 0),
-    "version": (0, 2, 0),
+    "version": (0, 3, 0),
     "category": "DCL",
     "location": "3D View -> Sidebar",
     "description": "OhMyVerse tools for improve Decentraland assets creation workflow",
@@ -35,6 +36,7 @@ bl_info = {
 
 def register():
     ot_armature_symmetrizer.register()
+    ot_unlock_deform_bones.register()
     ot_weights_symmetrizer.register()
     ot_export.register()
     pt_ohmyverse_dcl_tools.register()
@@ -42,6 +44,7 @@ def register():
 
 def unregister():
     ot_armature_symmetrizer.unregister()
+    ot_unlock_deform_bones.unregister()
     ot_weights_symmetrizer.unregister()
     ot_export.unregister()
     pt_ohmyverse_dcl_tools.unregister()
