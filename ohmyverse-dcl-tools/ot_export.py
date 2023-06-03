@@ -14,12 +14,6 @@ class OMV_OT_ExportGltfs(bpy.types.Operator):
     bl_idname = "dcl.export_gltfs"
     bl_label = "Export glTFs"
     # bl_options = {'REGISTER', 'UNDO'}
-    enum_items = (
-        ('SYMMETRIZE', 'Symmetrize Armature', '', 'MOD_MIRROR', 0),
-        ('RESTORE_DCL', 'Restore to original', '', 'RECOVER_LAST', 1),
-    )
-
-    action: bpy.props.EnumProperty(items=enum_items)
 
     # Poll for enables operator
     @classmethod
