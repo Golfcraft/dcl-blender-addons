@@ -134,14 +134,18 @@ class OMV_OT_ExportGltfs(bpy.types.Operator):
         gltf_path = C.scene.omv_gltfsexportsetup.export_path_3dmodels
         bpy.ops.object.select_all(action='DESELECT')
         self.select_all_collection(collection)
-        gltf_name = "{}.glb".format(collection.name)
+        gltf_name = "{}.gltf".format(collection.name)
         save_path = bpy.path.abspath(os.path.join(bpy.path.native_pathsep(gltf_path), gltf_name))
         if C.scene.omv_gltfsexportsetup.export_gltfs:
             bpy.ops.export_scene.gltf(
                 filepath=save_path,
-                export_format="GLB",
+                export_format="GLTF_SEPARATE",
+                export_texture_dir="textures",
                 use_selection=True,
-                export_animations=True
+                export_animations=True,
+                export_nla_strips=True,
+                export_optimize_animation_size=False,
+                export_anim_single_armature=False,
             )
         return gltf_name
 
